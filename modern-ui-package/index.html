@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Vehicle Maintenance System</title>
+    <meta name="description"
+        content="AutoInsight is a smart, seamless platform for managing vehicle maintenance, service records, technician workflows, and garage operations.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(3, 7, 18, 0.55), rgba(3, 7, 18, 0.9)), url('https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1600') center/cover no-repeat;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 60%, transparent 0%, var(--bg-color) 100%);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 22px;
+            border-radius: 999px;
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #818cf8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #6366f1, #d946ef, #f43f5e, #6366f1);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShine 5s linear infinite;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: rgba(248, 250, 252, 0.65);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 1.6rem;
+            z-index: 2;
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        /* Features */
+        .features-section {
+            padding: 100px 0;
+        }
+
+        .feature-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            margin-bottom: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover .feature-icon-wrap {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Stats */
+        .stats-section {
+            padding: 70px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--sidebar-text);
+        }
+
+        /* Roles */
+        .roles-section {
+            padding: 90px 0;
+        }
+
+        .role-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            color: var(--sidebar-text);
+            font-weight: 500;
+            font-size: 0.92rem;
+            margin: 6px;
+            transition: all 0.25s ease;
+            cursor: default;
+        }
+
+        .role-pill:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.4);
+            color: #818cf8;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .site-footer {
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="vms-app">
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container fade-in py-5">
+            <span class="hero-badge"><i class="bi bi-stars"></i> Next-Gen Auto Care Platform</span>
+            <h1 class="hero-title">AutoInsight<br>Vehicle Maintenance</h1>
+            <p class="hero-sub">
+                A smart, seamless platform designed to manage vehicle maintenance, service records,
+                technician workflows, and garage operations — all from one dashboard.
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="./login.html" class="btn btn-primary px-5 py-3 rounded-pill fw-bold text-white fs-5">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Login to Portal
+                </a>
+                <a href="./register.html" class="btn px-5 py-3 rounded-pill fw-bold text-white fs-5"
+                    style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(10px);">
+                    <i class="bi bi-person-plus me-2"></i> Create Account
+                </a>
+            </div>
+        </div>
+        <a href="#features" class="scroll-down"><i class="bi bi-chevron-double-down"></i></a>
+    </section>
+
+    <!-- Stats stripe -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-6 col-md-3">
+                    <div class="stat-num">2,400+</div>
+                    <div class="stat-label">Vehicles Managed</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-num">98.2%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">Technicians Supported</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-num">10</div>
+                    <div class="stat-label">Role Types</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-white" style="font-size:2.2rem;">Everything in one place</h2>
+                <p class="text-muted mt-2" style="max-width:560px;margin:0 auto;">Centralize your vehicle data, service
+                    history, work orders, and technician assignments.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100">
+                        <div class="feature-icon-wrap" style="background:rgba(99,102,241,0.1);color:#818cf8;"><i
+                                class="bi bi-hdd-network"></i></div>
+                        <h5 class="fw-bold text-white mb-2">Centralized Data</h5>
+                        <p class="text-muted mb-0">Keep all vehicle, service, and technician data securely in one
+                            accessible platform.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100">
+                        <div class="feature-icon-wrap" style="background:rgba(217,70,239,0.1);color:#d946ef;"><i
+                                class="bi bi-lightning-charge"></i></div>
+                        <h5 class="fw-bold text-white mb-2">Smart Workflows</h5>
+                        <p class="text-muted mb-0">Assign work orders, track progress in real-time, and approve parts
+                            requests instantly.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100">
+                        <div class="feature-icon-wrap" style="background:rgba(244,63,94,0.1);color:#f43f5e;"><i
+                                class="bi bi-shield-check"></i></div>
+                        <h5 class="fw-bold text-white mb-2">Trusted Records</h5>
+                        <p class="text-muted mb-0">Transparent service histories build unshakeable trust with your
+                            valued customers.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100">
+                        <div class="feature-icon-wrap" style="background:rgba(16,185,129,0.1);color:#10b981;"><i
+                                class="bi bi-cpu"></i></div>
+                        <h5 class="fw-bold text-white mb-2">OBD Integration</h5>
+                        <p class="text-muted mb-0">Automatically collect vehicle health scores from OBD sensors,
+                            calculate categories in real time.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100">
+                        <div class="feature-icon-wrap" style="background:rgba(245,158,11,0.1);color:#f59e0b;"><i
+                                class="bi bi-graph-up-arrow"></i></div>
+                        <h5 class="fw-bold text-white mb-2">Financial Insights</h5>
+                        <p class="text-muted mb-0">Generate reports, manage invoices, record payments, and visualize
+                            revenue trends.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100">
+                        <div class="feature-icon-wrap" style="background:rgba(6,182,212,0.1);color:#06b6d4;"><i
+                                class="bi bi-robot"></i></div>
+                        <h5 class="fw-bold text-white mb-2">AI Chatbot</h5>
+                        <p class="text-muted mb-0">Clients can ask an AI assistant for guidance on bookings, services,
+                            and vehicle status anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roles Section -->
+    <section class="roles-section" id="roles">
+        <div class="container text-center">
+            <h2 class="fw-bold text-white mb-2" style="font-size:2rem;">Built for every role</h2>
+            <p class="text-muted mb-4">Tailored dashboards and permissions for each team member.</p>
+            <div>
+                <span class="role-pill"><i class="bi bi-shield-lock-fill"></i> Admin</span>
+                <span class="role-pill"><i class="bi bi-person-badge"></i> Client</span>
+                <span class="role-pill"><i class="bi bi-tools"></i> Technician</span>
+                <span class="role-pill"><i class="bi bi-calendar-check"></i> Service Manager</span>
+                <span class="role-pill"><i class="bi bi-binoculars"></i> General Manager</span>
+                <span class="role-pill"><i class="bi bi-box-seam"></i> Stock Keeper</span>
+                <span class="role-pill"><i class="bi bi-receipt"></i> Finance Manager</span>
+                <span class="role-pill"><i class="bi bi-bar-chart-line"></i> Data Analyst</span>
+            </div>
+            <div class="mt-5 d-flex justify-content-center gap-3 flex-wrap">
+                <a href="./login.html" class="btn btn-primary px-4 py-2 rounded-pill fw-bold text-white">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Get Started
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container text-muted small">
+            © 2026 AutoInsight Vehicle Maintenance System — All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

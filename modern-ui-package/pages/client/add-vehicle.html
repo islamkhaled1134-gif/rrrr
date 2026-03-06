@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Add Vehicle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+</head>
+
+<body class="vms-app">
+    <nav class="sidebar">
+        <a href="../../index.html" class="brand"><i class="bi bi-car-front-fill" style="color:#818cf8;"></i>
+            AutoInsight</a>
+        <div class="sidebar-heading">My Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="./client-dashboard.html"><i class="bi bi-house"></i> Dashboard</a></li>
+            <li><a href="./profile.html"><i class="bi bi-person-circle"></i> My Profile</a></li>
+            <li class="active"><a href="./vehicle-list.html"><i class="bi bi-car-front"></i> My Vehicles</a></li>
+        </ul>
+        <div class="sidebar-heading">Services</div>
+        <ul class="sidebar-menu">
+            <li><a href="./booking.html"><i class="bi bi-calendar-plus"></i> Book Service</a></li>
+            <li><a href="./service-history.html"><i class="bi bi-clock-history"></i> Service History</a></li>
+            <li><a href="#" class="logout-link"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button id="sidebarToggle" class="btn btn-outline-secondary d-md-none"><i
+                        class="bi bi-list"></i></button>
+                <h5 class="mb-0 fw-bold">Add Vehicle</h5>
+            </div>
+            <div class="ms-auto"><button id="themeSwitch" class="btn btn-outline-secondary rounded-circle"
+                    style="width:38px;height:38px;padding:0;"><i class="bi bi-moon-stars"></i></button></div>
+        </header>
+        <div class="container-fluid p-4 fade-in" style="max-width:720px;">
+            <div class="dashboard-header">
+                <div>
+                    <span class="dashboard-breadcrumbs">Client / Vehicles / Add</span>
+                    <h1 class="dashboard-title">Add New Vehicle</h1>
+                </div>
+            </div>
+            <div class="card border-0 rounded-4 p-4">
+                <form id="addVehicleForm">
+                    <div class="row g-3">
+                        <div class="col-md-6"><label class="form-label">Make <span
+                                    class="text-danger">*</span></label><input type="text" class="form-control"
+                                id="vMake" placeholder="e.g. Toyota" required></div>
+                        <div class="col-md-6"><label class="form-label">Model <span
+                                    class="text-danger">*</span></label><input type="text" class="form-control"
+                                id="vModel" placeholder="e.g. Camry" required></div>
+                        <div class="col-md-4"><label class="form-label">Year <span
+                                    class="text-danger">*</span></label><input type="number" class="form-control"
+                                id="vYear" placeholder="2022" min="1990" max="2030" required></div>
+                        <div class="col-md-4"><label class="form-label">Color</label><input type="text"
+                                class="form-control" id="vColor" placeholder="e.g. Blue"></div>
+                        <div class="col-md-4"><label class="form-label">Fuel Type</label>
+                            <select class="form-select">
+                                <option>Petrol</option>
+                                <option>Diesel</option>
+                                <option>Electric</option>
+                                <option>Hybrid</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6"><label class="form-label">License Plate <span
+                                    class="text-danger">*</span></label><input type="text" class="form-control"
+                                id="vPlate" placeholder="e.g. ABC-1234" required></div>
+                        <div class="col-md-6"><label class="form-label">VIN Number</label><input type="text"
+                                class="form-control" id="vVin" placeholder="17-character VIN"></div>
+                        <div class="col-12"><label class="form-label">Mileage (km)</label><input type="number"
+                                class="form-control" placeholder="e.g. 45000"></div>
+                        <div class="col-12"><label class="form-label">Additional Notes</label><textarea
+                                class="form-control" rows="2"
+                                placeholder="Any existing issues or modifications..."></textarea></div>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle me-2"></i> Add
+                            Vehicle</button>
+                        <a href="./vehicle-list.html" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+
+</html>

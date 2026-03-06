@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Permissions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+</head>
+
+<body class="vms-app">
+    <nav class="sidebar">
+        <a href="../../index.html" class="brand"><i class="bi bi-car-front-fill" style="color:#818cf8;"></i>
+            AutoInsight</a>
+        <div class="sidebar-heading">Core</div>
+        <ul class="sidebar-menu">
+            <li><a href="./admin-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+            <li><a href="./manage-users.html"><i class="bi bi-people"></i> Users</a></li>
+            <li class="active"><a href="./permissions.html"><i class="bi bi-shield-lock"></i> Permissions</a></li>
+        </ul>
+        <div class="sidebar-heading">Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="logout-link"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button id="sidebarToggle" class="btn btn-outline-secondary d-md-none"><i
+                        class="bi bi-list"></i></button>
+                <h5 class="mb-0 fw-bold">Permission Management</h5>
+            </div>
+            <div class="ms-auto"><button id="themeSwitch" class="btn btn-outline-secondary rounded-circle"
+                    style="width:38px;height:38px;padding:0;"><i class="bi bi-moon-stars"></i></button></div>
+        </header>
+        <div class="container-fluid p-4 fade-in">
+            <div class="dashboard-header">
+                <div>
+                    <span class="dashboard-breadcrumbs">Admin / Permissions</span>
+                    <h1 class="dashboard-title">Permission Matrix</h1>
+                </div>
+            </div>
+
+            <!-- Role Permission Matrix -->
+            <div class="card border-0 rounded-4 mb-4">
+                <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                    <h6 class="fw-bold">Default Role Permissions</h6>
+                    <p class="text-muted small mb-0">Overview of default permissions assigned to each role. Use User
+                        Management to override per-user.</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Role</th>
+                                    <th class="text-center">Appointments</th>
+                                    <th class="text-center">Work Orders</th>
+                                    <th class="text-center">Inventory</th>
+                                    <th class="text-center">Finance</th>
+                                    <th class="text-center">Analytics</th>
+                                    <th class="text-center">Admin</th>
+                                </tr>
+                            </thead>
+                            <tbody id="permMatrix"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Per-User Permissions -->
+            <div class="card border-0 rounded-4">
+                <div
+                    class="card-header bg-transparent border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                    <h6 class="fw-bold mb-0">User Permission Overrides</h6>
+                    <select id="permUserSelect" class="form-select"
+                        style="width:240px;background:rgba(255,255,255,0.05);border-color:var(--border-color);">
+                        <option value="">— Select user —</option>
+                    </select>
+                </div>
+                <div class="card-body" id="permEditor" style="display:none;">
+                    <form id="singlePermForm">
+                        <input type="hidden" id="permEmail">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                        id="perm_appointments"><label class="form-check-label"
+                                        for="perm_appointments">Appointments</label></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                        id="perm_work_orders"><label class="form-check-label"
+                                        for="perm_work_orders">Work Orders</label></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                        id="perm_inventory"><label class="form-check-label"
+                                        for="perm_inventory">Inventory</label></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                        id="perm_finance"><label class="form-check-label"
+                                        for="perm_finance">Finance</label></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                        id="perm_analytics"><label class="form-check-label"
+                                        for="perm_analytics">Analytics</label></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                        id="perm_admin"><label class="form-check-label" for="perm_admin">Admin</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-save me-2"></i> Save
+                                Permissions</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Dummy modal placeholders for JS -->
+    <div id="userModal" style="display:none;"></div>
+    <div id="permModal" style="display:none;"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        const ROLES = ['admin', 'client', 'technician', 'service-manager', 'general-manager', 'stock-keeper', 'finance-manager', 'data-analyst'];
+        const PERMS = ['appointments', 'work_orders', 'inventory', 'finance', 'analytics', 'admin'];
+        const DEFAULT_PERMS = {
+            admin: PERMS,
+            client: ['appointments'],
+            technician: ['work_orders'],
+            'service-manager': ['appointments', 'work_orders'],
+            'general-manager': ['analytics', 'finance', 'inventory', 'work_orders', 'appointments'],
+            'stock-keeper': ['inventory'],
+            'finance-manager': ['finance'],
+            'data-analyst': ['analytics'],
+        };
+
+        function check(has) { return has ? '<i class="bi bi-check-circle-fill text-success fs-5"></i>' : '<i class="bi bi-x-circle text-muted fs-5"></i>'; }
+
+        const body = document.getElementById('permMatrix');
+        body.innerHTML = ROLES.map(role => `
+      <tr>
+        <td><span class="badge badge-outline text-white" style="border-color:rgba(255,255,255,.15)">${role}</span></td>
+        ${PERMS.map(p => `<td class="text-center">${check((DEFAULT_PERMS[role] || []).includes(p))}</td>`).join('')}
+      </tr>
+    `).join('');
+
+        // Populate user select
+        const s = JSON.parse(localStorage.getItem('autoinsight_v1') || '{}');
+        const sel = document.getElementById('permUserSelect');
+        (s.users || []).forEach(u => { sel.innerHTML += `<option value="${u.email}">${u.name} (${u.role})</option>`; });
+
+        sel.addEventListener('change', () => {
+            const email = sel.value;
+            const u = (s.users || []).find(x => x.email === email);
+            if (!u) { document.getElementById('permEditor').style.display = 'none'; return; }
+            document.getElementById('permEditor').style.display = 'block';
+            document.getElementById('permEmail').value = email;
+            const perms = new Set(u.permissions || []);
+            PERMS.forEach(k => { const el = document.getElementById('perm_' + k); if (el) el.checked = perms.has(k); });
+        });
+
+        document.getElementById('singlePermForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('permEmail').value;
+            const s2 = JSON.parse(localStorage.getItem('autoinsight_v1') || '{}');
+            const u = (s2.users || []).find(x => x.email === email);
+            if (u) {
+                u.permissions = PERMS.filter(k => document.getElementById('perm_' + k)?.checked);
+                localStorage.setItem('autoinsight_v1', JSON.stringify(s2));
+                alert('Permissions saved!');
+            }
+        });
+    </script>
+</body>
+
+</html>

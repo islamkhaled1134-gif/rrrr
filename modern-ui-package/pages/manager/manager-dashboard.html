@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Service Manager Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="vms-app">
+    <nav class="sidebar">
+        <a href="../../index.html" class="brand"><i class="bi bi-car-front-fill" style="color:#818cf8;"></i>
+            AutoInsight</a>
+        <div class="sidebar-heading">Manager</div>
+        <ul class="sidebar-menu">
+            <li class="active"><a href="./manager-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+            <li><a href="./manage-appointments.html"><i class="bi bi-calendar-check"></i> Appointments</a></li>
+            <li><a href="../technician/work-orders.html"><i class="bi bi-card-list"></i> Work Orders</a></li>
+        </ul>
+        <div class="sidebar-heading">Teams</div>
+        <ul class="sidebar-menu">
+            <li><a href="./assign-technician.html"><i class="bi bi-person-badge"></i> Assign Technician</a></li>
+            <li><a href="../inventory/parts-approval.html"><i class="bi bi-box-seam"></i> Parts Approval</a></li>
+        </ul>
+        <div class="sidebar-heading">Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="../client/profile.html"><i class="bi bi-person-circle"></i> Profile</a></li>
+            <li><a href="#" class="logout-link"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button id="sidebarToggle" class="btn btn-outline-secondary d-md-none"><i
+                        class="bi bi-list"></i></button>
+                <h5 class="mb-0 fw-bold">Service Manager Dashboard</h5>
+            </div>
+            <div class="d-flex align-items-center gap-2 ms-auto">
+                <button id="themeSwitch" class="btn btn-outline-secondary rounded-circle"
+                    style="width:38px;height:38px;padding:0;"><i class="bi bi-moon-stars"></i></button>
+                <div class="dropdown">
+                    <a href="#"
+                        class="d-flex align-items-center gap-2 text-decoration-none dropdown-toggle user-profile"
+                        data-bs-toggle="dropdown">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+Brown&background=8b5cf6&color=fff" alt="">
+                        <span class="d-none d-md-inline fw-semibold topbar-username">Sarah Brown</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item text-danger logout-link" href="#"><i
+                                    class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="container-fluid p-4 fade-in">
+            <div class="dashboard-header">
+                <div>
+                    <span class="dashboard-breadcrumbs">Manager / Overview</span>
+                    <h1 class="dashboard-title">Service Operations</h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="./manage-appointments.html" class="btn btn-primary btn-sm"><i
+                            class="bi bi-calendar-plus me-1"></i> Manage Bookings</a>
+                </div>
+            </div>
+
+            <!-- KPI Pods -->
+            <div class="row g-4 mb-4">
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="kpi-pod">
+                        <div class="kpi-label">Today's Appointments</div>
+                        <div class="kpi-value">14</div>
+                        <div class="kpi-trend positive"><i class="bi bi-check2"></i> 10 Confirmed</div>
+                        <i class="bi bi-calendar-event kpi-icon-overlay"></i>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="kpi-pod">
+                        <div class="kpi-label">Open Work Orders</div>
+                        <div class="kpi-value">8</div>
+                        <div class="kpi-trend negative"><i class="bi bi-exclamation-circle"></i> 2 Overdue</div>
+                        <i class="bi bi-tools kpi-icon-overlay"></i>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="kpi-pod">
+                        <div class="kpi-label">Technicians on Duty</div>
+                        <div class="kpi-value">4</div>
+                        <div class="kpi-trend positive"><i class="bi bi-people"></i> 1 Available</div>
+                        <i class="bi bi-person-badge kpi-icon-overlay"></i>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="kpi-pod">
+                        <div class="kpi-label">Parts Requests</div>
+                        <div class="kpi-value">3</div>
+                        <div class="kpi-trend warning"><i class="bi bi-hourglass"></i> 1 Urgent</div>
+                        <i class="bi bi-box-seam kpi-icon-overlay"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Appointments Table -->
+                <div class="col-lg-7">
+                    <div class="card border-0 rounded-4">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0 d-flex justify-content-between">
+                            <h6 class="fw-bold mb-0">Today's Appointment Queue</h6>
+                            <a href="./manage-appointments.html" class="btn btn-sm btn-outline-secondary">View All</a>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Client</th>
+                                            <th>Service</th>
+                                            <th>Time</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="fw-semibold">Jane Doe</div><small class="text-muted">Ford
+                                                    Bronco</small>
+                                            </td>
+                                            <td>Oil Change</td>
+                                            <td>10:00 AM</td>
+                                            <td><span class="status-badge completed">Confirmed</span></td>
+                                            <td><button class="btn btn-sm btn-outline-secondary">Assign</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="fw-semibold">Jane Doe</div><small class="text-muted">Honda
+                                                    Civic</small>
+                                            </td>
+                                            <td>Brake Inspection</td>
+                                            <td>2:00 PM</td>
+                                            <td><span class="status-badge pending">Pending</span></td>
+                                            <td><button class="btn btn-sm btn-primary">Confirm</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Parts Approval -->
+                <div class="col-lg-5">
+                    <div class="card border-0 rounded-4">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0 d-flex justify-content-between">
+                            <h6 class="fw-bold mb-0">Parts Approval Queue</h6>
+                            <a href="../inventory/parts-approval.html" class="btn btn-sm btn-outline-secondary">All</a>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="p-3 border-bottom" style="border-color:var(--border-color) !important;">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <div>
+                                        <div class="fw-semibold">Brake Pads (Front) ×2</div>
+                                        <small class="text-muted">From: Mike Thompson · WO-4595</small>
+                                    </div>
+                                    <span class="badge bg-danger">High</span>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-success flex-fill"><i class="bi bi-check me-1"></i>
+                                        Approve</button>
+                                    <button class="btn btn-sm btn-outline-danger flex-fill"><i class="bi bi-x me-1"></i>
+                                        Reject</button>
+                                </div>
+                            </div>
+                            <div class="p-3 text-center text-muted small">
+                                No more pending requests.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Throughput Chart -->
+                <div class="col-12">
+                    <div class="card border-0 rounded-4">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                            <h6 class="fw-bold mb-0">Weekly Service Throughput</h6>
+                        </div>
+                        <div class="card-body"><canvas id="throughputChart" style="height:200px;"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        new Chart(document.getElementById('throughputChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                datasets: [
+                    { label: 'Completed', data: [5, 7, 4, 8, 6, 3], backgroundColor: '#10b981' },
+                    { label: 'In Progress', data: [2, 1, 3, 1, 2, 1], backgroundColor: '#6366f1' },
+                    { label: 'Queued', data: [1, 2, 1, 0, 2, 2], backgroundColor: 'rgba(255,255,255,.1)' },
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: { x: { stacked: true, ticks: { color: 'rgba(255,255,255,.5)' }, grid: { display: false } }, y: { stacked: true, ticks: { color: 'rgba(255,255,255,.5)' }, grid: { color: 'rgba(255,255,255,.05)' } } },
+                plugins: { legend: { labels: { color: 'rgba(255,255,255,.6)' } } }
+            }
+        });
+    </script>
+</body>
+
+</html>

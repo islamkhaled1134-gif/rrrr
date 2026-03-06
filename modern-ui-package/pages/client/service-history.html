@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Service History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+</head>
+
+<body class="vms-app">
+    <nav class="sidebar">
+        <a href="../../index.html" class="brand"><i class="bi bi-car-front-fill" style="color:#818cf8;"></i>
+            AutoInsight</a>
+        <div class="sidebar-heading">My Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="./client-dashboard.html"><i class="bi bi-house"></i> Dashboard</a></li>
+            <li><a href="./profile.html"><i class="bi bi-person-circle"></i> My Profile</a></li>
+            <li><a href="./vehicle-list.html"><i class="bi bi-car-front"></i> My Vehicles</a></li>
+        </ul>
+        <div class="sidebar-heading">Services</div>
+        <ul class="sidebar-menu">
+            <li><a href="./booking.html"><i class="bi bi-calendar-plus"></i> Book Service</a></li>
+            <li class="active"><a href="./service-history.html"><i class="bi bi-clock-history"></i> Service History</a>
+            </li>
+            <li><a href="./payments.html"><i class="bi bi-credit-card"></i> Payments</a></li>
+            <li><a href="#" class="logout-link"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button id="sidebarToggle" class="btn btn-outline-secondary d-md-none"><i
+                        class="bi bi-list"></i></button>
+                <h5 class="mb-0 fw-bold">Service History</h5>
+            </div>
+            <div class="ms-auto"><button id="themeSwitch" class="btn btn-outline-secondary rounded-circle"
+                    style="width:38px;height:38px;padding:0;"><i class="bi bi-moon-stars"></i></button></div>
+        </header>
+        <div class="container-fluid p-4 fade-in">
+            <div class="dashboard-header">
+                <div>
+                    <span class="dashboard-breadcrumbs">Client / Service History</span>
+                    <h1 class="dashboard-title">Service History</h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <select class="form-select form-select-sm"
+                        style="width:160px;background:rgba(255,255,255,.05);border-color:var(--border-color);">
+                        <option>All Vehicles</option>
+                        <option>Ford Bronco</option>
+                        <option>Honda Civic</option>
+                    </select>
+                    <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-download me-1"></i> Export</button>
+                </div>
+            </div>
+
+            <div class="card border-0 rounded-4">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Service</th>
+                                    <th>Vehicle</th>
+                                    <th>Technician</th>
+                                    <th>Cost</th>
+                                    <th>Status</th>
+                                    <th>Invoice</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><small class="text-muted">Mar 1, 2026</small></td>
+                                    <td class="fw-semibold">Oil Change & Filter</td>
+                                    <td><span class="badge bg-secondary">Ford Bronco</span></td>
+                                    <td>Mike Thompson</td>
+                                    <td class="fw-bold text-success">$95.00</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                    <td><a href="../finance/invoices.html" class="btn btn-sm btn-outline-secondary"><i
+                                                class="bi bi-receipt"></i> INV-2001</a></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-muted">Feb 10, 2026</small></td>
+                                    <td class="fw-semibold">Brake Inspection</td>
+                                    <td><span class="badge bg-secondary">Honda Civic</span></td>
+                                    <td>Mike Thompson</td>
+                                    <td class="fw-bold text-muted">—</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                    <td><span class="text-muted small">No invoice</span></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-muted">Jan 5, 2026</small></td>
+                                    <td class="fw-semibold">Engine Diagnostics</td>
+                                    <td><span class="badge bg-secondary">Ford Bronco</span></td>
+                                    <td>Mike Thompson</td>
+                                    <td class="fw-bold" style="color:#f59e0b;">$374.00</td>
+                                    <td><span class="status-badge in-progress">In Progress</span></td>
+                                    <td><a href="../finance/invoices.html" class="btn btn-sm btn-outline-secondary"><i
+                                                class="bi bi-receipt"></i> INV-2002</a></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-muted">Dec 20, 2025</small></td>
+                                    <td class="fw-semibold">Full Service Inspection</td>
+                                    <td><span class="badge bg-secondary">Honda Civic</span></td>
+                                    <td>James Wilson</td>
+                                    <td class="fw-bold text-success">$210.00</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                    <td><span class="text-muted small">No invoice</span></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-muted">Nov 14, 2025</small></td>
+                                    <td class="fw-semibold">Tyre Rotation</td>
+                                    <td><span class="badge bg-secondary">Ford Bronco</span></td>
+                                    <td>Mike Thompson</td>
+                                    <td class="fw-bold text-success">$45.00</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                    <td><span class="text-muted small">No invoice</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+
+</html>

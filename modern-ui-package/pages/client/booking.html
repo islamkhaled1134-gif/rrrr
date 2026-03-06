@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Book Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+</head>
+
+<body class="vms-app">
+    <nav class="sidebar">
+        <a href="../../index.html" class="brand"><i class="bi bi-car-front-fill" style="color:#818cf8;"></i>
+            AutoInsight</a>
+        <div class="sidebar-heading">My Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="./client-dashboard.html"><i class="bi bi-house"></i> Dashboard</a></li>
+            <li><a href="./profile.html"><i class="bi bi-person-circle"></i> My Profile</a></li>
+            <li><a href="./vehicle-list.html"><i class="bi bi-car-front"></i> My Vehicles</a></li>
+        </ul>
+        <div class="sidebar-heading">Services</div>
+        <ul class="sidebar-menu">
+            <li class="active"><a href="./booking.html"><i class="bi bi-calendar-plus"></i> Book Service</a></li>
+            <li><a href="./service-history.html"><i class="bi bi-clock-history"></i> Service History</a></li>
+            <li><a href="./payments.html"><i class="bi bi-credit-card"></i> Payments</a></li>
+            <li><a href="./chatbot.html"><i class="bi bi-robot"></i> AI Assistant</a></li>
+        </ul>
+        <div class="sidebar-heading">Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="logout-link"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button id="sidebarToggle" class="btn btn-outline-secondary d-md-none"><i
+                        class="bi bi-list"></i></button>
+                <h5 class="mb-0 fw-bold">Book Service Appointment</h5>
+            </div>
+            <div class="ms-auto"><button id="themeSwitch" class="btn btn-outline-secondary rounded-circle"
+                    style="width:38px;height:38px;padding:0;"><i class="bi bi-moon-stars"></i></button></div>
+        </header>
+        <div class="container-fluid p-4 fade-in" style="max-width:760px;">
+            <div class="dashboard-header">
+                <div>
+                    <span class="dashboard-breadcrumbs">Client / Services</span>
+                    <h1 class="dashboard-title">Book a Service</h1>
+                </div>
+            </div>
+
+            <!-- Wizard Steps -->
+            <div class="wizard-steps mb-4">
+                <div class="wizard-step active">
+                    <div class="step-num">1</div> Service Type
+                </div>
+                <div class="wizard-connector"></div>
+                <div class="wizard-step">
+                    <div class="step-num">2</div> Vehicle
+                </div>
+                <div class="wizard-connector"></div>
+                <div class="wizard-step">
+                    <div class="step-num">3</div> Date & Time
+                </div>
+                <div class="wizard-connector"></div>
+                <div class="wizard-step">
+                    <div class="step-num">4</div> Confirm
+                </div>
+            </div>
+
+            <div class="card border-0 rounded-4 p-4">
+                <form id="appointmentForm">
+                    <!-- Service Type -->
+                    <h6 class="fw-bold mb-3" style="color:#818cf8;"><i class="bi bi-tools me-2"></i>Select Service Type
+                    </h6>
+                    <div class="row g-2 mb-4" id="serviceCards">
+                        <div class="col-6 col-md-4">
+                            <div class="card service-option p-3 text-center"
+                                onclick="selectService(this,'Oil Change & Filter')"><i
+                                    class="bi bi-droplet-fill fs-3 text-warning"></i>
+                                <div class="mt-2 fw-semibold" style="font-size:.9rem;">Oil Change & Filter</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card service-option p-3 text-center"
+                                onclick="selectService(this,'Brake Inspection')"><i
+                                    class="bi bi-disc-fill fs-3 text-danger"></i>
+                                <div class="mt-2 fw-semibold" style="font-size:.9rem;">Brake Inspection</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card service-option p-3 text-center"
+                                onclick="selectService(this,'Engine Diagnostics')"><i
+                                    class="bi bi-cpu-fill fs-3 text-info"></i>
+                                <div class="mt-2 fw-semibold" style="font-size:.9rem;">Engine Diagnostics</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card service-option p-3 text-center"
+                                onclick="selectService(this,'Full Service')"><i class="bi bi-stars fs-3"
+                                    style="color:#818cf8;"></i>
+                                <div class="mt-2 fw-semibold" style="font-size:.9rem;">Full Service</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card service-option p-3 text-center"
+                                onclick="selectService(this,'Tyre Replacement')"><i class="bi bi-circle-fill fs-3"
+                                    style="color:#10b981;"></i>
+                                <div class="mt-2 fw-semibold" style="font-size:.9rem;">Tyre Replacement</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card service-option p-3 text-center" onclick="selectService(this,'AC Service')">
+                                <i class="bi bi-snow2 fs-3 text-primary"></i>
+                                <div class="mt-2 fw-semibold" style="font-size:.9rem;">AC Service</div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="apptService" name="service">
+
+                    <hr style="border-color:var(--border-color);">
+                    <h6 class="fw-bold mb-3" style="color:#818cf8;"><i class="bi bi-car-front me-2"></i>Select Vehicle
+                    </h6>
+                    <div class="mb-3">
+                        <select class="form-select" id="apptVehicle" name="vehicle" required>
+                            <option value="">Loading vehicles...</option>
+                        </select>
+                    </div>
+
+                    <hr style="border-color:var(--border-color);">
+                    <h6 class="fw-bold mb-3" style="color:#818cf8;"><i class="bi bi-calendar me-2"></i>Date & Time</h6>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Preferred Date</label>
+                            <input type="date" class="form-control" id="apptDate" name="date" required min="">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Preferred Time</label>
+                            <select class="form-select" id="apptTime" name="time">
+                                <option value="08:00">8:00 AM</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00" selected>10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Special Notes <small class="text-muted">(optional)</small></label>
+                            <textarea class="form-control" id="apptNotes" name="notes" rows="3"
+                                placeholder="Any specific concerns or requests..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary px-4"><i class="bi bi-calendar-check me-2"></i>
+                            Confirm Booking</button>
+                        <a href="./client-dashboard.html" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Set min date to today
+        document.getElementById('apptDate').min = new Date().toISOString().split('T')[0];
+
+        function selectService(el, name) {
+            document.querySelectorAll('.service-option').forEach(c => c.style.borderColor = '');
+            el.style.borderColor = 'var(--primary-color)';
+            el.style.boxShadow = 'var(--glow-primary)';
+            document.getElementById('apptService').value = name;
+        }
+    </script>
+    <style>
+        .service-option {
+            cursor: pointer;
+            transition: all .2s ease;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        .service-option:hover {
+            border-color: rgba(99, 102, 241, .5) !important;
+            transform: translateY(-2px);
+        }
+    </style>
+</body>
+
+</html>

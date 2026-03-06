@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — OBD Vehicle Monitor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="vms-app">
+    <nav class="sidebar">
+        <a href="../../index.html" class="brand"><i class="bi bi-car-front-fill" style="color:#818cf8;"></i>
+            AutoInsight</a>
+        <div class="sidebar-heading">Analytics</div>
+        <ul class="sidebar-menu">
+            <li><a href="../analytics/data-dashboard.html"><i class="bi bi-graph-up"></i> Overview</a></li>
+            <li class="active"><a href="./obd-monitor.html"><i class="bi bi-cpu"></i> OBD Monitor</a></li>
+        </ul>
+        <div class="sidebar-heading">Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="logout-link"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button id="sidebarToggle" class="btn btn-outline-secondary d-md-none"><i
+                        class="bi bi-list"></i></button>
+                <h5 class="mb-0 fw-bold">OBD Vehicle Monitor</h5>
+            </div>
+            <div class="d-flex align-items-center gap-2 ms-auto">
+                <button id="themeSwitch" class="btn btn-outline-secondary rounded-circle"
+                    style="width:38px;height:38px;padding:0;"><i class="bi bi-moon-stars"></i></button>
+                <select id="obdVehicleSelect" class="form-select form-select-sm"
+                    style="width:200px;background:rgba(255,255,255,.05);border-color:var(--border-color);">
+                    <option value="bronco">2021 Ford Bronco</option>
+                    <option value="civic">2018 Honda Civic</option>
+                </select>
+            </div>
+        </header>
+        <div class="container-fluid p-4 fade-in">
+            <div class="dashboard-header">
+                <div>
+                    <span class="dashboard-breadcrumbs">Analytics / OBD Monitor</span>
+                    <h1 class="dashboard-title">Live Vehicle Health</h1>
+                </div>
+            </div>
+
+            <!-- Health Gauges Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-6 col-md-3">
+                    <div class="obd-sensor-card p-4 text-center">
+                        <i class="bi bi-thermometer-half vehicle-sensor-icon mb-2" id="engineTemp"
+                            style="color:#f59e0b;font-size:2rem;"></i>
+                        <div class="obd-value">95°C</div>
+                        <div class="obd-label">Engine Temp</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="obd-sensor-card p-4 text-center">
+                        <i class="bi bi-fuel-pump vehicle-sensor-icon mb-2" style="color:#06b6d4;font-size:2rem;"></i>
+                        <div class="obd-value" id="obdFuel">72%</div>
+                        <div class="obd-label">Fuel Level</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="obd-sensor-card p-4 text-center">
+                        <i class="bi bi-battery-full vehicle-sensor-icon mb-2"
+                            style="color:#10b981;font-size:2rem;"></i>
+                        <div class="obd-value" id="obdBattery">12.6V</div>
+                        <div class="obd-label">Battery Voltage</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="obd-sensor-card p-4 text-center">
+                        <i class="bi bi-speedometer vehicle-sensor-icon mb-2" style="color:#818cf8;font-size:2rem;"></i>
+                        <div class="obd-value" id="obdRPM">780</div>
+                        <div class="obd-label">RPM (Idle)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- DTCs -->
+                <div class="col-lg-6">
+                    <div class="card border-0 rounded-4">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                            <h6 class="fw-bold mb-0"><i
+                                    class="bi bi-exclamation-triangle-fill text-warning me-2"></i>Fault Codes (DTCs)
+                            </h6>
+                        </div>
+                        <div class="card-body p-0" id="dtcList">
+                            <div class="p-3 border-bottom" style="border-color:var(--border-color) !important;">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <span class="badge bg-danger me-2">P0420</span>
+                                        <span class="fw-semibold">Catalyst System, Bank 1 — Low Efficiency</span>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-secondary">Clear</button>
+                                </div>
+                                <small class="text-muted mt-1 d-block">First detected: Mar 3, 2026 · Emissions
+                                    related</small>
+                            </div>
+                            <div class="p-3 border-bottom" style="border-color:var(--border-color) !important;">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <span class="badge bg-warning text-dark me-2">P0171</span>
+                                        <span class="fw-semibold">System Too Lean, Bank 1</span>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-secondary">Clear</button>
+                                </div>
+                                <small class="text-muted mt-1 d-block">First detected: Mar 5, 2026 · Fuel system</small>
+                            </div>
+                            <div class="text-center text-muted py-3 small">
+                                <i class="bi bi-robot me-2"></i> <a href="../client/chatbot.html"
+                                    style="color:#818cf8;">Ask AI Assistant about these codes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- RPM/Speed Chart -->
+                <div class="col-lg-6">
+                    <div class="card border-0 rounded-4 h-100">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                            <h6 class="fw-bold mb-0">Engine RPM Over Time</h6>
+                        </div>
+                        <div class="card-body"><canvas id="rpmChart" style="height:250px;"></canvas></div>
+                    </div>
+                </div>
+
+                <!-- Maintenance Alerts -->
+                <div class="col-12">
+                    <div class="card border-0 rounded-4">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                            <h6 class="fw-bold mb-0">Predictive Maintenance Alerts</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Component</th>
+                                            <th>Last Service</th>
+                                            <th>Next Service Due</th>
+                                            <th>Urgency</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-semibold">Engine Oil</td>
+                                            <td>Mar 1, 2026</td>
+                                            <td>Sep 1, 2026 (or 10,000 km)</td>
+                                            <td><span class="badge bg-success">Good</span></td>
+                                            <td><button class="btn btn-sm btn-outline-secondary">Schedule</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-semibold">Brake Pads</td>
+                                            <td>Jan 5, 2026</td>
+                                            <td><span class="text-danger fw-bold">Immediate</span></td>
+                                            <td><span class="badge bg-danger">Critical</span></td>
+                                            <td><a href="../client/booking.html" class="btn btn-sm btn-danger">Book
+                                                    Now</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-semibold">Air Filter</td>
+                                            <td>Mar 1, 2026</td>
+                                            <td>Mar 1, 2027</td>
+                                            <td><span class="badge bg-success">Good</span></td>
+                                            <td><button class="btn btn-sm btn-outline-secondary">Schedule</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Simulate live RPM data
+        const rpmData = [750, 800, 820, 780, 900, 1200, 2500, 3400, 2800, 1500, 900, 780];
+        new Chart(document.getElementById('rpmChart'), {
+            type: 'line',
+            data: {
+                labels: rpmData.map((_, i) => i * 5 + 's'),
+                datasets: [{ label: 'RPM', data: rpmData, borderColor: '#6366f1', backgroundColor: 'rgba(99,102,241,0.08)', fill: true, tension: 0.4, pointRadius: 3 }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: { ticks: { color: 'rgba(255,255,255,.4)' }, grid: { color: 'rgba(255,255,255,.04)' } },
+                    y: { ticks: { color: 'rgba(255,255,255,.4)' }, grid: { color: 'rgba(255,255,255,.04)' }, min: 0, max: 4000 }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+
+</html>

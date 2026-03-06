@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Login</title>
+    <meta name="description" content="Log in to AutoInsight Vehicle Maintenance System.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/forms.css">
+</head>
+
+<body class="auth-bg vms-app">
+    <div class="bg-glow"></div>
+
+    <div class="auth-card card fade-in">
+        <div class="card-body">
+            <!-- Brand Row -->
+            <div class="brand-row">
+                <span class="brand-pill"><i class="bi bi-car-front-fill"></i> AutoInsight</span>
+                <a href="./index.html" class="auth-back-btn" title="Back to Home"><i class="bi bi-arrow-left"></i></a>
+            </div>
+
+            <h2 class="auth-title">Welcome back</h2>
+            <p class="auth-subtitle">Enter your credentials to access your dashboard.</p>
+
+            <div class="auth-divider"></div>
+
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label class="form-label">Email address</label>
+                    <input id="loginEmail" type="email" class="form-control" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <div class="input-group">
+                        <input id="loginPassword" type="password" class="form-control" placeholder="Enter password">
+                        <button class="btn btn-outline-secondary" type="button" id="togglePass">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3 p-3 rounded-3"
+                    style="background:rgba(99,102,241,0.07); border:1px solid rgba(99,102,241,0.2);">
+                    <label class="form-label mb-2" style="font-size:0.82rem; letter-spacing:0.5px;">
+                        <i class="bi bi-lightning-charge-fill text-warning me-1"></i> DEMO: Select Role
+                    </label>
+                    <select class="form-select" id="roleSelect">
+                        <option value="">— Use real credentials above —</option>
+                        <option value="admin">Admin</option>
+                        <option value="client">Client</option>
+                        <option value="technician">Technician</option>
+                        <option value="service-manager">Service Manager</option>
+                        <option value="general-manager">General Manager</option>
+                        <option value="stock-keeper">Stock Keeper</option>
+                        <option value="finance-manager">Finance Manager</option>
+                        <option value="data-analyst">Data Analyst</option>
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe"
+                            style="color:var(--sidebar-text);font-size:.88rem;">Remember me</label>
+                    </div>
+                    <a href="./forgot-password.html"
+                        style="color:#818cf8;font-weight:600;text-decoration:none;font-size:.88rem;">Forgot
+                        password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-auth text-white">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Sign In
+                </button>
+
+                <div class="auth-link-row">
+                    Don't have an account? <a href="./register.html">Create Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById('togglePass').addEventListener('click', function () {
+            const inp = document.getElementById('loginPassword');
+            const icon = this.querySelector('i');
+            if (inp.type === 'password') { inp.type = 'text'; icon.className = 'bi bi-eye-slash'; }
+            else { inp.type = 'password'; icon.className = 'bi bi-eye'; }
+        });
+    </script>
+</body>
+
+</html>

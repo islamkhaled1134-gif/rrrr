@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Manage Appointments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+</head>
+
+<body class="vms-app">
+    <nav class="sidebar">
+        <a href="../../index.html" class="brand"><i class="bi bi-car-front-fill" style="color:#818cf8;"></i>
+            AutoInsight</a>
+        <div class="sidebar-heading">Manager</div>
+        <ul class="sidebar-menu">
+            <li><a href="./manager-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+            <li class="active"><a href="./manage-appointments.html"><i class="bi bi-calendar-check"></i> Appointments</a>
+            </li>
+            <li><a href="../technician/work-orders.html"><i class="bi bi-card-list"></i> Work Orders</a></li>
+        </ul>
+        <div class="sidebar-heading">Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="logout-link"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button id="sidebarToggle" class="btn btn-outline-secondary d-md-none"><i
+                        class="bi bi-list"></i></button>
+                <h5 class="mb-0 fw-bold">Manage Appointments</h5>
+            </div>
+            <div class="ms-auto"><button id="themeSwitch" class="btn btn-outline-secondary rounded-circle"
+                    style="width:38px;height:38px;padding:0;"><i class="bi bi-moon-stars"></i></button></div>
+        </header>
+        <div class="container-fluid p-4 fade-in">
+            <div class="dashboard-header">
+                <div>
+                    <span class="dashboard-breadcrumbs">Manager / Appointments</span>
+                    <h1 class="dashboard-title">Appointments</h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <input type="date" class="form-control form-control-sm"
+                        style="width:160px;background:rgba(255,255,255,.05);border-color:var(--border-color);">
+                    <select class="form-select form-select-sm"
+                        style="width:150px;background:rgba(255,255,255,.05);border-color:var(--border-color);">
+                        <option>All Status</option>
+                        <option>Confirmed</option>
+                        <option>Pending</option>
+                        <option>Cancelled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card border-0 rounded-4">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Client</th>
+                                    <th>Service</th>
+                                    <th>Vehicle</th>
+                                    <th>Date / Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold">APT-001</td>
+                                    <td>Jane Doe<br><small class="text-muted">client@autoinsight.com</small></td>
+                                    <td>Oil Change</td>
+                                    <td>Ford Bronco (XYZ-1234)</td>
+                                    <td>Mar 15 · 10:00 AM</td>
+                                    <td><span class="status-badge completed">Confirmed</span></td>
+                                    <td>
+                                        <button class="row-action-btn success" title="Create Work Order"><i
+                                                class="bi bi-card-list"></i></button>
+                                        <button class="row-action-btn danger" title="Cancel"><i
+                                                class="bi bi-x-circle"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">APT-002</td>
+                                    <td>Jane Doe<br><small class="text-muted">client@autoinsight.com</small></td>
+                                    <td>Brake Inspection</td>
+                                    <td>Honda Civic (ABC-9876)</td>
+                                    <td>Mar 22 · 2:00 PM</td>
+                                    <td><span class="status-badge pending">Pending</span></td>
+                                    <td>
+                                        <button class="row-action-btn success" title="Confirm"><i
+                                                class="bi bi-check-circle"></i></button>
+                                        <button class="row-action-btn danger" title="Cancel"><i
+                                                class="bi bi-x-circle"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+
+</html>

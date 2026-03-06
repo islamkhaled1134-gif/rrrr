@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Payments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+</head>
+
+<body class="vms-app">
+    <nav class="sidebar">
+        <a href="../../index.html" class="brand"><i class="bi bi-car-front-fill" style="color:#818cf8;"></i>
+            AutoInsight</a>
+        <div class="sidebar-heading">My Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="./client-dashboard.html"><i class="bi bi-house"></i> Dashboard</a></li>
+            <li><a href="./vehicle-list.html"><i class="bi bi-car-front"></i> My Vehicles</a></li>
+        </ul>
+        <div class="sidebar-heading">Services</div>
+        <ul class="sidebar-menu">
+            <li><a href="./booking.html"><i class="bi bi-calendar-plus"></i> Book Service</a></li>
+            <li><a href="./service-history.html"><i class="bi bi-clock-history"></i> Service History</a></li>
+            <li class="active"><a href="./payments.html"><i class="bi bi-credit-card"></i> Payments</a></li>
+            <li><a href="#" class="logout-link"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button id="sidebarToggle" class="btn btn-outline-secondary d-md-none"><i
+                        class="bi bi-list"></i></button>
+                <h5 class="mb-0 fw-bold">Payments</h5>
+            </div>
+            <div class="ms-auto"><button id="themeSwitch" class="btn btn-outline-secondary rounded-circle"
+                    style="width:38px;height:38px;padding:0;"><i class="bi bi-moon-stars"></i></button></div>
+        </header>
+        <div class="container-fluid p-4 fade-in">
+            <div class="dashboard-header">
+                <div>
+                    <span class="dashboard-breadcrumbs">Client / Payments</span>
+                    <h1 class="dashboard-title">My Payments</h1>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Outstanding Invoices -->
+                <div class="col-lg-5">
+                    <div class="card border-0 rounded-4">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                            <h6 class="fw-bold mb-0">Outstanding Invoices</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="invoice-item">
+                                <div>
+                                    <div class="fw-semibold">INV-2002</div>
+                                    <small class="text-muted">Engine Diagnostics · Ford Bronco</small>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold" style="color:#f59e0b;">$374.00</div>
+                                    <span class="badge bg-warning text-dark">Due Mar 20</span>
+                                </div>
+                            </div>
+                            <div class="invoice-item">
+                                <div>
+                                    <div class="fw-semibold">INV-2003</div>
+                                    <small class="text-muted">Brake Pads · Honda Civic</small>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold text-white">$231.00</div>
+                                    <span class="badge bg-info text-dark">Sent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 rounded-4 mt-4">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                            <h6 class="fw-bold mb-0">Payment History</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="invoice-item">
+                                <div>
+                                    <div class="fw-semibold">INV-2001</div>
+                                    <small class="text-muted">Oil Change · Feb 28, 2026</small>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold text-success">$104.50</div>
+                                    <span class="badge bg-success">Paid</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Form -->
+                <div class="col-lg-7">
+                    <div class="card border-0 rounded-4">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                            <h6 class="fw-bold mb-0">Make a Payment</h6>
+                        </div>
+                        <div class="card-body">
+                            <form id="paymentForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Select Invoice</label>
+                                    <select class="form-select">
+                                        <option>INV-2002 — Engine Diagnostics — $374.00</option>
+                                        <option>INV-2003 — Brake Pads — $231.00</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label d-block mb-2">Payment Method</label>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="paymentMethod"
+                                                id="payCard" value="card" checked>
+                                            <label class="form-check-label" for="payCard"><i
+                                                    class="bi bi-credit-card me-1"></i> Card</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="paymentMethod"
+                                                id="payCash" value="cash">
+                                            <label class="form-check-label" for="payCash"><i
+                                                    class="bi bi-cash me-1"></i> Cash</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="paymentMethod"
+                                                id="payInstalment" value="instalment">
+                                            <label class="form-check-label" for="payInstalment"><i
+                                                    class="bi bi-calendar3 me-1"></i> Instalment</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="cardFields">
+                                    <div class="mb-3">
+                                        <label class="form-label">Card Number</label>
+                                        <input type="text" class="form-control" id="cardNumber"
+                                            placeholder="1234 5678 9012 3456" maxlength="19">
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-6">
+                                            <label class="form-label">Expiry Date</label>
+                                            <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY"
+                                                maxlength="5">
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">CVV</label>
+                                            <input type="password" class="form-control" id="cvv" placeholder="•••"
+                                                maxlength="4">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Cardholder Name</label>
+                                        <input type="text" class="form-control" placeholder="Jane Doe">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 p-3 mb-3 rounded-3"
+                                    style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);">
+                                    <i class="bi bi-shield-lock-fill text-success fs-5"></i>
+                                    <small class="text-muted">Your payment is secured with 256-bit SSL
+                                        encryption.</small>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
+                                    <i class="bi bi-credit-card me-2"></i> Pay Now
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Format card number with spaces
+        document.getElementById('cardNumber').addEventListener('input', function () {
+            let val = this.value.replace(/\D/g, '').slice(0, 16);
+            this.value = val.replace(/(\d{4})(?=\d)/g, '$1 ');
+        });
+        // Format expiry
+        document.getElementById('expiryDate').addEventListener('input', function () {
+            let val = this.value.replace(/\D/g, '').slice(0, 4);
+            if (val.length >= 2) val = val.slice(0, 2) + '/' + val.slice(2);
+            this.value = val;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoInsight — Finance Reports</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="vms-app">
+    <nav class="sidebar">
+        <a href="../../index.html" class="brand"><i class="bi bi-car-front-fill" style="color:#818cf8;"></i>
+            AutoInsight</a>
+        <div class="sidebar-heading">Finance</div>
+        <ul class="sidebar-menu">
+            <li><a href="./finance-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+            <li><a href="./invoices.html"><i class="bi bi-receipt"></i> Invoices</a></li>
+            <li><a href="./payments.html"><i class="bi bi-credit-card"></i> Payments</a></li>
+            <li class="active"><a href="./reports.html"><i class="bi bi-bar-chart"></i> Reports</a></li>
+        </ul>
+        <div class="sidebar-heading">Account</div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="logout-link"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button id="sidebarToggle" class="btn btn-outline-secondary d-md-none"><i
+                        class="bi bi-list"></i></button>
+                <h5 class="mb-0 fw-bold">Finance Reports</h5>
+            </div>
+            <div class="d-flex align-items-center gap-2 ms-auto">
+                <button id="themeSwitch" class="btn btn-outline-secondary rounded-circle"
+                    style="width:38px;height:38px;padding:0;"><i class="bi bi-moon-stars"></i></button>
+                <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-download me-1"></i> Export PDF</button>
+            </div>
+        </header>
+        <div class="container-fluid p-4 fade-in">
+            <div class="dashboard-header">
+                <div>
+                    <span class="dashboard-breadcrumbs">Finance / Reports</span>
+                    <h1 class="dashboard-title">Financial Reports</h1>
+                </div>
+            </div>
+
+            <!-- Report Filters -->
+            <div class="card border-0 rounded-4 mb-4 p-3">
+                <div class="d-flex flex-wrap gap-3 align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <label class="text-muted small">Period</label>
+                        <select class="form-select form-select-sm"
+                            style="width:140px;background:rgba(255,255,255,.05);border-color:var(--border-color);">
+                            <option>This Month</option>
+                            <option>Last Month</option>
+                            <option>Last Quarter</option>
+                            <option>This Year</option>
+                            <option>Custom</option>
+                        </select>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <label class="text-muted small">Type</label>
+                        <select class="form-select form-select-sm"
+                            style="width:180px;background:rgba(255,255,255,.05);border-color:var(--border-color);">
+                            <option>Revenue Summary</option>
+                            <option>Expense Report</option>
+                            <option>Profit & Loss</option>
+                            <option>Invoice Aging</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary btn-sm"><i class="bi bi-play me-1"></i> Generate</button>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- P&L Summary -->
+                <div class="col-lg-4">
+                    <div class="card border-0 rounded-4 p-4">
+                        <h6 class="fw-bold mb-3">P&L Summary — March 2026</h6>
+                        <div class="d-flex justify-content-between mb-2"><span class="text-muted">Gross
+                                Revenue</span><span class="fw-bold text-success">$14,200</span></div>
+                        <div class="d-flex justify-content-between mb-2"><span class="text-muted">Parts &
+                                Materials</span><span class="text-danger">−$4,218</span></div>
+                        <div class="d-flex justify-content-between mb-2"><span class="text-muted">Labour
+                                Cost</span><span class="text-danger">−$3,520</span></div>
+                        <div class="d-flex justify-content-between mb-2"><span class="text-muted">Overhead</span><span
+                                class="text-danger">−$1,800</span></div>
+                        <hr style="border-color:var(--border-color);">
+                        <div class="d-flex justify-content-between"><span class="fw-bold">Net Profit</span><span
+                                class="fw-bold text-success fs-5">$4,662</span></div>
+                    </div>
+                </div>
+                <!-- Monthly P&L Chart -->
+                <div class="col-lg-8">
+                    <div class="card border-0 rounded-4 h-100">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                            <h6 class="fw-bold mb-0">Monthly Profit & Loss</h6>
+                        </div>
+                        <div class="card-body"><canvas id="plChart" style="height:240px;"></canvas></div>
+                    </div>
+                </div>
+
+                <!-- Invoice Aging Table -->
+                <div class="col-12">
+                    <div class="card border-0 rounded-4">
+                        <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                            <h6 class="fw-bold mb-0">Invoice Aging Analysis</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Invoice</th>
+                                            <th>Client</th>
+                                            <th>Amount</th>
+                                            <th>0–30 days</th>
+                                            <th>31–60 days</th>
+                                            <th>61–90 days</th>
+                                            <th>90+ days</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold">INV-2002</td>
+                                            <td>Jane Doe</td>
+                                            <td class="fw-bold text-white">$374.00</td>
+                                            <td class="text-success">$374.00</td>
+                                            <td class="text-muted">—</td>
+                                            <td class="text-muted">—</td>
+                                            <td class="text-muted">—</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">INV-2003</td>
+                                            <td>Jane Doe</td>
+                                            <td class="fw-bold text-white">$231.00</td>
+                                            <td class="text-success">$231.00</td>
+                                            <td class="text-muted">—</td>
+                                            <td class="text-muted">—</td>
+                                            <td class="text-muted">—</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        new Chart(document.getElementById('plChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar'],
+                datasets: [
+                    { label: 'Revenue', data: [8200, 9100, 14200], backgroundColor: '#10b981' },
+                    { label: 'Expenses', data: [5200, 5800, 9538], backgroundColor: '#f43f5e' },
+                    { label: 'Net Profit', data: [3000, 3300, 4662], backgroundColor: '#6366f1', type: 'line', borderColor: '#818cf8', pointRadius: 5 }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: { ticks: { color: 'rgba(255,255,255,.5)' }, grid: { display: false } },
+                    y: { ticks: { color: 'rgba(255,255,255,.5)', callback: v => '$' + (v / 1000).toFixed(0) + 'k' }, grid: { color: 'rgba(255,255,255,.04)' } }
+                },
+                plugins: { legend: { labels: { color: 'rgba(255,255,255,.6)' } } }
+            }
+        });
+    </script>
+</body>
+
+</html>
